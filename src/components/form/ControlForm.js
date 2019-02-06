@@ -87,22 +87,13 @@ class ControlForm extends React.Component {
     render() {
         const {
             children,
-            dispatch,
             render,
-            initialValues,
-            handleSubmitSuccess,
-            handleSubmitFailed,
-            validators,
-            messages,
-            ...formProps,
         } = this.props;
         const { values, fieldValidity, formValidity } = this.state;
         const handleInputChange = this.handleInputChange;
         
         return (
             <Form
-                {...formProps}
-                onSubmit={this.handleSubmit}
             >
                 {children}
                 {render && render({values, handleInputChange, fieldValidity, formValidity})}

@@ -1,14 +1,13 @@
 import * as React from 'react';
+import { View } from 'react-native';
 import { fieldClassNames, FieldWrapper } from './styled';
 import { process } from 'services/styles-utils.ts';
-import Title from './components/title';
+import Label from './components/label';
 import Hint from './components/hint';
-import ErrorHint from './components/error-hint';
-import Icon, { StatusTypes } from './components/icon';
 
 /**
  * Фабрика для текстового поля ввода и селекта, обеспечивает необходимый внешний вид,
- * выводит название поля, текст подсказки или ошибки
+ * выводит название поля, текст ошибки
  */
 function fieldFactory(Input) {
     class Field extends React.Component {
@@ -30,7 +29,7 @@ function fieldFactory(Input) {
         
         applyNewActiveState = () => {
             const { focused, active } = this.state;
-            const newActiveState = focused || !this.isInputValueEmpty();
+            const newActiveState = focused /* || !this.isInputValueEmpty() */;
 
             if (active !== newActiveState) {
                 this.setState({ active: newActiveState });
@@ -63,15 +62,11 @@ function fieldFactory(Input) {
         
         renderHint = () => {
             const {
-                hint,
                 error,
-                subHint,
             } = this.props;
 
             if (this.isInvalid()) {
-                return <ErrorHint>{error}</ErrorHint>;
-            } else if (hint) {
-                return <Hint subHint={subHint}>{hint}</Hint>;
+                return <Hint>{error}</Hint>;
             }
 
             return null;
@@ -83,9 +78,7 @@ function fieldFactory(Input) {
                 value,
                 label,
                 touched,
-                hint,
                 error,
-                subHint,
                 required,
                 disabled,
                 isLoading,
@@ -95,33 +88,23 @@ function fieldFactory(Input) {
                 classic,
                 ...inputProps,
             } = this.props;
-            const { active } = this.state;
+
             const isInvalid = this.isInvalid();
-            const showIcon = touched || isLoading;
-            const activeTitle = alwaysActiveTitle || active
-                || value && value.length > 0
-                || defaultValue && defaultValue.length > 0;
             const classes = process(
                 className,
                 fieldClassNames.TextField,
                 {
                     [fieldClassNames.TextFieldInvalid]: isInvalid,
                     [fieldClassNames.TextFieldDisabled]: disabled,
-                    [fieldClassNames.TextFieldWithIcon]: showIcon,
                 },
             );
-            let iconStatus = StatusTypes.valid;
-
-            if (error) {
-                iconStatus = StatusTypes.invalid;
-            }
-            if (isLoading) {
-                iconStatus = StatusTypes.loading;
-            }
 
             return (
-                <FieldWrapper>
+                <View>
                     <div className={classes} ref={(el) => this.containerElement = el}>
+                        <Label required={required}>
+                            {label}
+                        </Label>
                         <Input
                             {...inputProps}
                             ref={inputRef}
@@ -133,16 +116,9 @@ function fieldFactory(Input) {
                             onBlur={this.handleBlur}
                             autoComplete="off"
                         />
-                        {showIcon && <Icon status={iconStatus} />}
-                        <Title
-                            input={inputProps.id || inputProps.name}
-                            title={label}
-                            required={required}
-                            active={activeTitle}
-                        />
                         {this.renderHint()}
                     </div>
-                </FieldWrapper>
+                </View>
             );
         }
     }
