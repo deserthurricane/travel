@@ -6,8 +6,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import Heading from '../../components/heading/Heading';
-import Input from '../../components/form/input/index';
-
+import PassengerForm from './PassengerForm';
 export default class PassengerScreen extends React.Component {
 	static navigationOptions = {
 		header: null,
@@ -21,10 +20,7 @@ export default class PassengerScreen extends React.Component {
 					contentContainerStyle={styles.contentContainer}
 				>
 					<Heading>Данные пассажиров</Heading>
-					<Input 
-						placeholder="Тест"
-					/>
-					{/* <PassengerForm/> */}
+					<PassengerForm/>
 				</ScrollView>
 			</View>
 		);

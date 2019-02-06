@@ -7,7 +7,7 @@ import { View } from 'react-native';
 export default class Form extends React.Component {
     render() {
         return (
-            <View style={styles.form}>
+            <View /* style={styles.form} */>
                 {this.props.children}
             </View>
         );

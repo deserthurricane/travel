@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './Form';
-import withValidators from './ValidationWrapper';
-import { getBrokenRules } from './validation-helpers';
+import { getBrokenRules, createValidators, createErrors } from './validation-helpers';
+
 
 class ControlForm extends React.Component {
     constructor(props) {
@@ -11,6 +11,12 @@ class ControlForm extends React.Component {
             fieldValidity: {},
             formValidity: false,
         };
+        this.validators = {};
+        this.messages = {};
+        for (const fieldName in props.initialValues) {
+            this.validators[fieldName] = createValidators(this.props.rules[fieldName]);
+            this.messages[fieldName] = createErrors(this.props.rules[fieldName]);
+        }
     }
 
     async componentDidMount() {
@@ -40,8 +46,9 @@ class ControlForm extends React.Component {
     }
 
     checkFieldValidity = async (name, value) => {
-        const { validators, messages } = this.props;
-        const brokenRules = getBrokenRules(value, validators[name]);
+        // const { validators, messages } = this.props;
+        const brokenRules = getBrokenRules(value, this.validators[name]);
+        console.log(brokenRules, 'brokenRules');
 
         if (!brokenRules.length) {
             await this.setState({ 
@@ -54,7 +61,7 @@ class ControlForm extends React.Component {
             await this.setState({ 
                 fieldValidity: {
                     ...this.state.fieldValidity, 
-                    [name]: messages[name][brokenRules[0]],
+                    [name]: this.messages[name][brokenRules[0]],
                 },
             });
         }
@@ -91,15 +98,15 @@ class ControlForm extends React.Component {
         } = this.props;
         const { values, fieldValidity, formValidity } = this.state;
         const handleInputChange = this.handleInputChange;
+
+        console.log(fieldValidity.surname);
         
         return (
-            <Form
-            >
-                {children}
+            <Form>
                 {render && render({values, handleInputChange, fieldValidity, formValidity})}
             </Form>
         );
     }
 }
 
-export default withValidators(ControlForm);
+export default ControlForm;

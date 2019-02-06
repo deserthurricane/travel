@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from './Input';
-import MaskedInput from 'components/fields/masked-field/index';
+// import MaskedInput from 'components/fields/masked-field/index';
 
 export class ControlInput extends React.Component {
     constructor(props) {
@@ -22,8 +22,9 @@ export class ControlInput extends React.Component {
         }
     }
 
-    handleChange = (e) => {
-        this.props.onChange(e);
+    handleChange = (value) => {
+        const { name, onChange } = this.props;
+        onChange(name, value);
         if (!this.state.pristine) {
             this.setState({
                 touched: true,
@@ -65,17 +66,18 @@ export class ControlInput extends React.Component {
                 />
             );
         } else {
-            return (
-                <MaskedInput 
-                    {...inputProps}
-                    mask={mask}
-                    value={value || ''}
-                    onChange={this.handleChange}
-                    onBlur={this.handleBlur}
-                    touched={touched}
-                    error={error}
-                />
-            );
+            return null;
+            // (
+            //     <MaskedInput 
+            //         {...inputProps}
+            //         mask={mask}
+            //         value={value || ''}
+            //         onChange={this.handleChange}
+            //         onBlur={this.handleBlur}
+            //         touched={touched}
+            //         error={error}
+            //     />
+            // );
         }
     }
 }

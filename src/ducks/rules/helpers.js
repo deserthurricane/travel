@@ -1,5 +1,7 @@
 import { isMatch, isEmpty, isMatchMinLength, isMatchMaxLength, isFitToAllowedValues } from '../../utils/validation';
 
+const ruleSelector = (state) => state.rules[rule];
+
 const createValidators = (rule) => {
     if (!rule) {
         return {};
@@ -78,4 +80,4 @@ const createErrors = (rule) => {
     return errors;
 }
 
-export { createValidators, createErrors };
+export { ruleSelector, createValidators, createErrors };
