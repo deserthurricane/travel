@@ -1,7 +1,7 @@
-import * as React from 'react';
-import fieldFactory from 'components/fields/field-factory';
+import React from 'react';
+import Select from './Select'; 
 
-class Select extends React.Component {
+export default class ControlSelect extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,19 +25,19 @@ class Select extends React.Component {
             renderOption,
             value,
             defaultValue,
-            ...selectProps,
+            ...selectProps
         } = this.props;
         const { localValue } = this.state;
 
         return (
-            <Picker
+            <Select
                 selectedValue={localValue}
                 style={{height: 50, width: 100}}
                 onValueChange={this.handleChange}
             >
-                <Picker.Item label="Java" value="java" />
-                <Picker.Item label="JavaScript" value="js" />
-            </Picker>
+                <Select.Item label="Java" value="java" />
+                <Select.Item label="JavaScript" value="js" />
+            </Select>
             // <select
             //     {...selectProps}
             //     value={resultValue}
@@ -49,5 +49,3 @@ class Select extends React.Component {
         );
     }
 }
-
-export default fieldFactory(Select);

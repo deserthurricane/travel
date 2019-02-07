@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import ControlForm from '../../components/form/ControlForm';
 import ControlInput from '../../components/form/fields/ControlInput';
 import ControlRadioGroup from '../../components/form/fields/ControlRadioGroup';
+import ControlSelect from '../../components/form/fields/ControlSelect'
 import { validationRules, emptyValues } from './helpers';
 
 const sexOptions = [
@@ -95,6 +96,7 @@ export default class PassengerForm extends React.Component {
                                 error={fieldValidity.sex || ''}
                             />
 							<Text>Тип документа</Text>
+                            <ControlSelect />
 							<ControlInput
 								name="civil_passport_series"
 								label="Серия паспорта"
