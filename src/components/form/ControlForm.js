@@ -48,7 +48,6 @@ class ControlForm extends React.Component {
     checkFieldValidity = async (name, value) => {
         // const { validators, messages } = this.props;
         const brokenRules = getBrokenRules(value, this.validators[name]);
-        console.log(brokenRules, 'brokenRules');
 
         if (!brokenRules.length) {
             await this.setState({ 
@@ -98,8 +97,6 @@ class ControlForm extends React.Component {
         } = this.props;
         const { values, fieldValidity, formValidity } = this.state;
         const handleInputChange = this.handleInputChange;
-
-        console.log(fieldValidity.surname);
         
         return (
             <Form>

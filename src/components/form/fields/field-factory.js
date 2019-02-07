@@ -83,18 +83,6 @@ function fieldFactory(Input) {
             // }
         };
         
-        renderHint = () => {
-            const {
-                error,
-            } = this.props;
-
-            if (this.isInvalid()) {
-                return <Hint>{error}</Hint>;
-            }
-
-            return null;
-        };
-        
         render() {   
             const {
                 value,
@@ -140,7 +128,7 @@ function fieldFactory(Input) {
                         onBlur={this.handleBlur}
                         onChangeText={this.handleChange}
                     />
-                    {this.renderHint()}
+                    <Hint>{error}</Hint>
                 </View>
             );
         }

@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     valid: {
         borderColor: 'green',
     },
+    hint: {
+        color: 'red'
+    }
 });
 
 export default styles;
