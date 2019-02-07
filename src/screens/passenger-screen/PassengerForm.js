@@ -2,7 +2,19 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import ControlForm from '../../components/form/ControlForm';
 import ControlInput from '../../components/form/fields/ControlInput';
+import ControlRadioGroup from '../../components/form/fields/ControlRadioGroup';
 import { validationRules, emptyValues } from './helpers';
+
+const sexOptions = [
+    {
+        label: 'Мужчина',
+        value: 'M'
+    },
+    {
+        label: 'Женщина',
+        value: 'F'
+    },
+];
 
 export default class PassengerForm extends React.Component {
 	constructor(props) {
@@ -74,7 +86,14 @@ export default class PassengerForm extends React.Component {
 								value={values.birth_year}
 								error={fieldValidity.birth_year || ''}
 							/>
-							<Text>Пол</Text>
+                            <ControlRadioGroup
+                                groupLabel="Пол"
+                                name="sex"
+                                options={sexOptions}
+                                selectedValue={values.sex}
+                                onChange={handleInputChange}
+                                error={fieldValidity.sex || ''}
+                            />
 							<Text>Тип документа</Text>
 							<ControlInput
 								name="civil_passport_series"
@@ -134,8 +153,8 @@ export default class PassengerForm extends React.Component {
 								error={fieldValidity.birth_certificate_series || ''}
 							/>
 							<ControlInput
-								name="Номер свидетельства о рождении"
-								label="Фамилия"
+								name="birth_certificate_number"
+								label="Номер свидетельства о рождении"
 								onChange={handleInputChange}
 								value={values.birth_certificate_number}
 								error={fieldValidity.birth_certificate_number || ''}

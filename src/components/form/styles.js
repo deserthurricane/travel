@@ -21,7 +21,23 @@ const styles = StyleSheet.create({
     },
     hint: {
         color: 'red'
-    }
+    },
+    radio: {
+        flex: 1,
+        alignItems: 'center',
+        padding: 10,
+        borderColor: 'skyblue',
+        borderWidth: 1,
+    },
+    selected: {
+        backgroundColor: 'silver',
+        color: 'white',
+    },
+    radioGroup: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
 });
 
 export default styles;

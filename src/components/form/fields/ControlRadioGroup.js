@@ -1,8 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import Radiobutton from './radiobutton';
-import { RadioGroupLabel } from './components/Label';
-import Hint from './components/hint';
+import Radiobutton from './Radiobutton';
+import Label from './components/Label';
+import Hint from './components/Hint';
+import styles from '../styles';
 
 class ControlRadioGroup extends React.Component {
     constructor(props) {
@@ -24,56 +25,47 @@ class ControlRadioGroup extends React.Component {
         }
     }
 
-    handleChange = (e) => {
-        this.props.onChange(e);
-        if (this.state.pristine) {
+    handleChange = (value) => {
+        const { name, onChange } = this.props;
+        onChange(name, value);
+        if (!this.state.pristine) {
             this.setState({
-                pristine: false,
                 touched: true,
             });
         }
     }
 
-    renderHint = () => {
-        const { error } = this.props;
-
-        if (error) {
-            return <Hint>{error}</Hint>;
-        }
-
-        return null;
-    };
-
     render() {
         const {
             groupLabel,
             name,
-            componentStyle,
             disabled,
             options,
             selectedValue,
+            error
         } = this.props;
 
         const radioButtons = options.map((option, index) => {
             return (
                 <Radiobutton
                     key={index}
-                    componentStyle={componentStyle}
                     name={name}
                     label={option.label}
                     value={option.value}
-                    checked={selectedValue === option.value}
+                    selected={selectedValue === option.value}
                     disabled={disabled}
-                    onChange={this.handleChange}
+                    onPress={this.handleChange}
                 />
             );
         });
 
         return (
             <View>
-                <RadioGroupLabel text={groupLabel} />
-                {radioButtons}
-                {this.renderErrorHint()}
+                <Label>{groupLabel}</Label>
+                <View style={styles.radioGroup}>
+                    {radioButtons}
+                </View>
+                <Hint>{error}</Hint>
             </View>
         );
     }
