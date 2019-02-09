@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
+import {Modal, Text, TouchableHighlight, View, ScrollView, Alert} from 'react-native';
 import Radiobutton from './Radiobutton';
 import styles from '../styles';
 
@@ -15,6 +15,7 @@ export default class SelectIOS extends React.Component {
   handleChange = (value) => {
     const { name, onChange } = this.props;
       onChange(name, value);
+      this.setModalVisible(false)
   }
 
   renderRadioButtons = () => {
@@ -54,7 +55,7 @@ export default class SelectIOS extends React.Component {
           }}
         >
           <View style={{marginTop: 22}}>
-            <View style={{height: 500}}>
+            <View /* style={{height: 500} }*/>
               <TouchableHighlight
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
@@ -62,9 +63,14 @@ export default class SelectIOS extends React.Component {
                 <Text>Hide Modal</Text>
               </TouchableHighlight>
             </View>
-            <View style={styles.radioList}>
-                {this.renderRadioButtons()}
-            </View>
+            <ScrollView 
+					      style={styles.container} 
+					      contentContainerStyle={styles.contentContainer}
+				    >
+              <View style={styles.radioList}>
+                  {this.renderRadioButtons()}
+              </View>
+            </ScrollView>
           </View> 
         </Modal>
 

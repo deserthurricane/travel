@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     input: {
-        height: 40,
+        height: 50,
         paddingVertical: 10, 
         paddingHorizontal: 10, 
         borderColor: 'skyblue',
@@ -25,7 +25,9 @@ const styles = StyleSheet.create({
     radio: {
         flex: 1,
         alignItems: 'center',
-        padding: 10,
+        paddingVertical: 10, 
+        paddingHorizontal: 10,
+        height: 50,
         borderColor: 'skyblue',
         borderWidth: 1,
     },
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     selectIOS: {
-        height: 40,
+        height: 50,
         paddingVertical: 10, 
         paddingHorizontal: 10, 
         borderColor: 'skyblue',

@@ -108,6 +108,7 @@ const emptyValues = {
     birth_month: '',
     birth_year: '',
     document_type: '',
+    citizenship: '',
     civil_passport_series: '',
     civil_passport_number: '',
     international_passport_series: '',

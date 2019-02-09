@@ -1,6 +1,5 @@
-import { Dispatch } from 'redux';
-import { Statuses as asyncStatuses } from 'ducks/async-payload.h';
-import { IRules as IRulesClient, IRulesNormalized, getRules, normalizeRules } from 'services/client/rules';
+import { getCountries } from '../../api/countries';
+import { normalizeCountriesOptions } from './helpers';
 
 /**
  * State
@@ -14,31 +13,19 @@ const initialState = {
 /**
  * Selectors
  */
-export const rulesSelector = (state) => state.rules.data;
-
-export const ruleSelector = (state, rule) => state.rules.data[rule];
-
-// export const getRuleSelector = <P extends { rulePath?: string }>(
-//     state: IWithWidgetRules,
-//     props: P,
-// ): IRulesClient => state.rules.data[props.rulePath];
-
-/**
- * Constants
- */
-export const FETCH_RULES = 'widget/rules/FETCH_RULES';
+export const countriesSelector = (state) => state.countries.data;
 
 /**
  * Actions
  */
-
+const FETCH_COUNTRIES = 'FETCH_COUNTRIES';
 
 /**
  * Reducer
  */
-export default function authReducer(state = initialState, action) {
+export default function countriesReducer(state = initialState, action) {
     switch (action.type) {
-        case FETCH_RULES:
+        case FETCH_COUNTRIES:
             if (!action.payload) {
                 return {
                     ...state,
@@ -57,7 +44,7 @@ export default function authReducer(state = initialState, action) {
 
             return {
                 ...state,
-                data: { ...action.payload.data },
+                data: action.payload.data,
                 isFetching: false,
                 error: null,
             };
@@ -69,33 +56,32 @@ export default function authReducer(state = initialState, action) {
 /**
  * Action creators
  */
-export const fetchRulesActionCreator = (payload) => ({
-    type: FETCH_RULES,
+export const fetchCountriesActionCreator = (payload) => ({
+    type: FETCH_COUNTRIES,
     payload,
 });
 
 /**
- * Получение правил валидации
+ * Получение списка стран
  */
-export const fetchRulesThunkActionCreator = (route) => {
+export const fetchCountriesThunkActionCreator = () => {
     return async (dispatch, getState) => {
         const state = getState();
 
-        if (state.rules.isFetching) {
+        if (state.countries.isFetching) {
             return;
         }
 
-        dispatch(fetchRulesActionCreator());
+        dispatch(fetchCountriesActionCreator());
 
         try {
-            const response = await getRules(route);
-            const data = response.data;
-            const rules = normalizeRules(data);
-            
-            dispatch(fetchRulesActionCreator({ status: asyncStatuses.success, data: rules }));
+            const response = await getCountries();
+            const countries = normalizeCountriesOptions(response.data);     
+
+            dispatch(fetchCountriesActionCreator({ status: 'success', data: countries }));
         } catch (reason) {
             const error = reason.response && reason.response.data || reason.message;
-            dispatch(fetchRulesActionCreator({ status: asyncStatuses.error, error }));
+            dispatch(fetchCountriesActionCreator({ status: 'error', error }));
             throw new Error(error);
         }
     };

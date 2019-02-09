@@ -10,13 +10,14 @@ export default class ControlSelect extends React.Component {
             value,
             defaultValue,
             onChange,
-            error
+            error,
+            name
         } = this.props;
 
         if (Platform.OS === 'ios') {
             return (
                 <SelectIOS 
-                    name="document_type"
+                    name={name}
                     defaultValue={defaultValue}
                     options={options} 
                     selectedValue={value || defaultValue}
@@ -27,7 +28,7 @@ export default class ControlSelect extends React.Component {
         } else {
             return (
                 <SelectAndroid
-                    name="document_type"
+                    name={name}
                     defaultValue={defaultValue}
                     options={options} 
                     value={value}

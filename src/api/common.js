@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 export const routes = {
-    rules: '',
-    countries: 'https://pastebin.com/raw/sHWRWzEn',
+    countries: 'https://api.myjson.com/bins/15rx60',
 };
 
 const client = axios.create();
