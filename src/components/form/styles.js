@@ -38,6 +38,24 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
     },
+    radioList: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
+    selectIOS: {
+        height: 40,
+        paddingVertical: 10, 
+        paddingHorizontal: 10, 
+        borderColor: 'skyblue',
+        borderWidth: 1,
+        borderRadius: 4,
+    },
+    selectAndroid: {
+        borderColor: 'skyblue',
+        borderWidth: 1,
+        borderRadius: 4,
+    }
 });
 
 export default styles;

@@ -1,51 +1,40 @@
 import React from 'react';
-import Select from './Select'; 
+import { Platform } from 'react-native';
+import SelectAndroid from './SelectAndroid'; 
+import SelectIOS from './SelectIOS';
 
 export default class ControlSelect extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            localValue: this.props.defaultValue || '',
-        }
-    }
-
-    handleChange = (e) => {
-        this.setState({
-            localValue: itemValue
-        });
-        const { onChange } = this.props;
-        if (onChange) {
-            onChange(e);
-        }
-    };
-
     render() {
         const {
             options,
-            renderOption,
             value,
             defaultValue,
-            ...selectProps
+            onChange,
+            error
         } = this.props;
-        const { localValue } = this.state;
 
-        return (
-            <Select
-                selectedValue={localValue}
-                style={{height: 50, width: 100}}
-                onValueChange={this.handleChange}
-            >
-                <Select.Item label="Java" value="java" />
-                <Select.Item label="JavaScript" value="js" />
-            </Select>
-            // <select
-            //     {...selectProps}
-            //     value={resultValue}
-            //     onChange={this.handleChange}
-            // >
-            //     {!resultValue && !defaultValue && <option value="" />}
-            //     {options.map(renderOption)}
-            // </select>
-        );
+        if (Platform.OS === 'ios') {
+            return (
+                <SelectIOS 
+                    name="document_type"
+                    defaultValue={defaultValue}
+                    options={options} 
+                    selectedValue={value || defaultValue}
+                    onChange={onChange}
+                    error={error}
+                />
+            )
+        } else {
+            return (
+                <SelectAndroid
+                    name="document_type"
+                    defaultValue={defaultValue}
+                    options={options} 
+                    value={value}
+                    onChange={onChange}
+                    error={error}
+                />
+            );
+        }
     }
 }

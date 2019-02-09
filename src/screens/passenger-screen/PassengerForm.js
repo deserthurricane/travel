@@ -17,6 +17,21 @@ const sexOptions = [
     },
 ];
 
+const documentTypeOptions = [
+    {
+        label: 'Паспорт',
+        value: 1
+    },
+    {
+        label: 'Загранпаспорт',
+        value: 2
+    },
+    {
+        label: 'Свидетельство о рождении',
+        value: 3
+    },
+];
+
 export default class PassengerForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -96,7 +111,14 @@ export default class PassengerForm extends React.Component {
                                 error={fieldValidity.sex || ''}
                             />
 							<Text>Тип документа</Text>
-                            <ControlSelect />
+                            <ControlSelect
+                                name="document_type"
+                                defaultValue={documentTypeOptions[0].value}
+                                options={documentTypeOptions} 
+                                value={values.document_type}
+                                onChange={handleInputChange}
+                                error={fieldValidity.document_type || ''}
+                            />
 							<ControlInput
 								name="civil_passport_series"
 								label="Серия паспорта"
