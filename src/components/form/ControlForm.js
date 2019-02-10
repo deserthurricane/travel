@@ -1,8 +1,7 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
 import Form from './Form';
+import ControlModal from '../modal/Modal';
 import { getBrokenRules, createValidators, createErrors } from './validation-helpers';
-
 
 class ControlForm extends React.Component {
     constructor(props) {
@@ -88,7 +87,7 @@ class ControlForm extends React.Component {
     render() {
         const {
             render,
-            submitLabel
+            submitComponent
         } = this.props;
         const { values, fieldValidity, formValidity } = this.state;
         const handleInputChange = this.handleInputChange;
@@ -96,11 +95,11 @@ class ControlForm extends React.Component {
         return (
             <Form>
                 {render && render({values, handleInputChange, fieldValidity, formValidity})}
-                <TouchableOpacity
+                {submitComponent === 'modal' && <ControlModal
                     onPress={this.handleSubmit}
-                >
-                    <Text>{submitLabel}</Text>
-                </TouchableOpacity>
+                    data={JSON.stringify(values)}
+                    openText="ОТПРАВИТЬ"
+                />}
             </Form>
         );
     }

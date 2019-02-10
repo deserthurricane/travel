@@ -38,7 +38,7 @@ class PassengerForm extends React.Component {
 	};
 
 	render() {
-		const { countries, passenger } = this.props;
+		const { countries } = this.props;
 
 		if (countries && countries.length) {
 			return (
@@ -46,7 +46,7 @@ class PassengerForm extends React.Component {
 					initialValues={initialValues}
 					rules={validationRules}
 					onSubmit={this.handleSubmit}
-					submitLabel="ОТПРАВИТЬ"
+					submitComponent="modal"
 					render={({
 						values = initialValues,
 						handleInputChange,
