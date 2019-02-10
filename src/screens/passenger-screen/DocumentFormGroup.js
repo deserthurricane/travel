@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text } from 'react-native';
 import ControlInput from '../../components/form/fields/ControlInput';
-import { validationRules } from './helpers';
+import DateFormGroup from './DateFormGroup';
+import { validationRules, isDateBigger } from './helpers';
 
 export default function DocumentFormGroup(props) {
     const { handleInputChange, values, fieldValidity } = props;
@@ -29,26 +30,14 @@ export default function DocumentFormGroup(props) {
                         error={fieldValidity.international_passport_number}
                     />
                     <Text>Срок действия загранпаспорта</Text>
-                    <ControlInput
-                        name="international_passport_expiration_day"
-                        label="День"
-                        onChange={handleInputChange}
-                        value={values.international_passport_expiration_day}
-                        error={fieldValidity.international_passport_expiration_day}
-                    />
-                    <ControlInput
-                        name="international_passport_expiration_month"
-                        label="Месяц"
-                        onChange={handleInputChange}
-                        value={values.international_passport_expiration_month}
-                        error={fieldValidity.international_passport_expiration_month}
-                    />
-                    <ControlInput
-                        name="international_passport_expiration_year"
-                        label="Год"
-                        onChange={handleInputChange}
-                        value={values.international_passport_expiration_year}
-                        error={fieldValidity.international_passport_expiration_year}
+                    <DateFormGroup
+                        dayName="international_passport_expiration_day" 
+                        monthName="international_passport_expiration_month" 
+                        yearName="international_passport_expiration_year" 
+                        values={values} 
+                        fieldValidity={fieldValidity} 
+                        handleInputChange={handleInputChange} 
+                        compareDateFn={isDateBigger}
                     />
                 </React.Fragment>						
             );

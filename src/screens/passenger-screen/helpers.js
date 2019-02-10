@@ -146,4 +146,25 @@ const documentTypeOptions = [
     },
 ];
 
-export { validationRules, initialValues, sexOptions, documentTypeOptions };
+function isDateBigger(inputDate, currentDate) {
+    if (inputDate < currentDate) {
+        return 'Введенная дата должна быть больше текущей'
+    }
+    return null;
+}
+
+function isDateSmallerOrEqual(inputDate, currentDate) {
+    if (inputDate > currentDate) {
+        return 'Введенная дата не должна быть больше текущей'
+    }
+    return null;
+}
+
+export { 
+    validationRules, 
+    initialValues, 
+    sexOptions, 
+    documentTypeOptions, 
+    isDateBigger,
+    isDateSmallerOrEqual 
+};

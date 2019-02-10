@@ -6,7 +6,14 @@ import ControlInput from '../../components/form/fields/ControlInput';
 import ControlRadioGroup from '../../components/form/fields/ControlRadioGroup';
 import ControlSelect from '../../components/form/fields/ControlSelect';
 import DocumentFormGroup from './DocumentFormGroup';
-import { validationRules, initialValues, sexOptions, documentTypeOptions } from './helpers';
+import DateFormGroup from './DateFormGroup';
+import { 
+	validationRules, 
+	initialValues, 
+	sexOptions, 
+	documentTypeOptions,
+	isDateSmallerOrEqual
+} from './helpers';
 import { countriesSelector, fetchCountriesThunkActionCreator } from '../../ducks/countries';
 
 const mapStateToProps = (state) => ({
@@ -68,26 +75,14 @@ class PassengerForm extends React.Component {
 									error={fieldValidity.name}
 								/>
 								<Text>Дата рождения</Text>
-								<ControlInput
-									name="birth_day"
-									label="День"
-									onChange={handleInputChange}
-									value={values.birth_day}
-									error={fieldValidity.birth_day}
-								/>
-								<ControlInput
-									name="birth_month"
-									label="Месяц"
-									onChange={handleInputChange}
-									value={values.birth_month}
-									error={fieldValidity.birth_month}
-								/>
-								<ControlInput
-									name="birth_year"
-									label="Год"
-									onChange={handleInputChange}
-									value={values.birth_year}
-									error={fieldValidity.birth_year}
+								<DateFormGroup
+									dayName="birth_day" 
+									monthName="birth_month" 
+									yearName="birth_year" 
+									values={values} 
+									fieldValidity={fieldValidity} 
+									handleInputChange={handleInputChange} 
+									compareDateFn={isDateSmallerOrEqual}
 								/>
 								<ControlRadioGroup
 									groupLabel="Пол"
