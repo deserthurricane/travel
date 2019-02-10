@@ -15,37 +15,30 @@ import {
 	isDateSmallerOrEqual
 } from './helpers';
 import { countriesSelector, fetchCountriesThunkActionCreator } from '../../ducks/countries';
+import { passengerDataSelector, updatePassengerDataActionCreator } from '../../ducks/passenger';
 
 const mapStateToProps = (state) => ({
-	countries: countriesSelector(state)
+	countries: countriesSelector(state),
+	passenger: passengerDataSelector(state)
 });
 
 class PassengerForm extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			initialValues: initialValues,
-			rules: validationRules
-		};
-	}
 
 	async componentDidMount() {
 		await this.props.dispatch(fetchCountriesThunkActionCreator());
 	}
 
-	handleSubmit = async values => {
-		// const { dispatch } = this.props;
-		// await dispatch(mergeApplicationActionCreator(values));
-		// try {
-		// 	await dispatch(thunkActions.createOrUpgrade(true));
-		// } catch (error) {
-		// 	throw error;
-		// }
+	handleSubmit = async (values) => {
+		const { dispatch } = this.props;
+		try {
+			await dispatch(updatePassengerDataActionCreator(values));
+		} catch (error) {
+			// error handler
+		}
 	};
 
 	render() {
-		const { initialValues } = this.state;
-		const { countries } = this.props;
+		const { countries, passenger } = this.props;
 
 		if (countries && countries.length) {
 			return (
@@ -53,6 +46,7 @@ class PassengerForm extends React.Component {
 					initialValues={initialValues}
 					rules={validationRules}
 					onSubmit={this.handleSubmit}
+					submitLabel="ОТПРАВИТЬ"
 					render={({
 						values = initialValues,
 						handleInputChange,
@@ -112,7 +106,6 @@ class PassengerForm extends React.Component {
 									handleInputChange={handleInputChange}
 									fieldValidity={fieldValidity}
 								/>
-								<Text>ОТПРАВИТЬ</Text>
 							</View>
 						)}
 				/>

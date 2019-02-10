@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text, TouchableOpacity } from 'react-native';
 import Form from './Form';
 import { getBrokenRules, createValidators, createErrors } from './validation-helpers';
 
@@ -79,21 +80,15 @@ class ControlForm extends React.Component {
     handleSubmit = async () => {  
         try {
             await this.props.onSubmit(this.state.values);
-            if (this.props.handleSubmitSuccess) {
-                this.props.handleSubmitSuccess();
-            }
         } catch (error) {
-            // this.handleSubmitFailed(error);
+            throw error;
         }
     };
-
-    // handleSubmitFailed = (error) => {
-    // };
     
     render() {
         const {
-            children,
             render,
+            submitLabel
         } = this.props;
         const { values, fieldValidity, formValidity } = this.state;
         const handleInputChange = this.handleInputChange;
@@ -101,6 +96,11 @@ class ControlForm extends React.Component {
         return (
             <Form>
                 {render && render({values, handleInputChange, fieldValidity, formValidity})}
+                <TouchableOpacity
+                    onPress={this.handleSubmit}
+                >
+                    <Text>{submitLabel}</Text>
+                </TouchableOpacity>
             </Form>
         );
     }
