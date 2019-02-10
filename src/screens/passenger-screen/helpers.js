@@ -100,15 +100,15 @@ const validationRules = {
 
 };
 
-const emptyValues = {
+const initialValues = {
     name: '',
     surname: '',
     sex: '',
     birth_day: '',
     birth_month: '',
     birth_year: '',
-    document_type: '',
-    citizenship: '',
+    document_type: 1,
+    citizenship: 'RU',
     civil_passport_series: '',
     civil_passport_number: '',
     international_passport_series: '',
@@ -120,4 +120,30 @@ const emptyValues = {
     birth_certificate_number: ''
 };
 
-export { validationRules, emptyValues };
+const sexOptions = [
+    {
+        label: 'Мужчина',
+        value: 'M'
+    },
+    {
+        label: 'Женщина',
+        value: 'F'
+    },
+];
+
+const documentTypeOptions = [
+    {
+        label: 'Паспорт',
+        value: 1
+    },
+    {
+        label: 'Загранпаспорт',
+        value: 2
+    },
+    {
+        label: 'Свидетельство о рождении',
+        value: 3
+    },
+];
+
+export { validationRules, initialValues, sexOptions, documentTypeOptions };

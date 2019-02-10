@@ -62,7 +62,7 @@ export class ControlInput extends React.Component {
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
                     touched={touched}
-                    error={error}
+                    error={error || ''}
                 />
             );
         } else {

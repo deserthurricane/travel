@@ -27,7 +27,7 @@ class SelectAndroid extends React.Component {
     render() {
         const {
             options,
-            value,
+            selectedValue,
             defaultValue,
             ...selectProps
         } = this.props;
@@ -35,7 +35,7 @@ class SelectAndroid extends React.Component {
         return (
             <View style={styles.selectAndroid}>
                 <Picker
-                    selectedValue={value || defaultValue}
+                    selectedValue={selectedValue || defaultValue}
                     onValueChange={this.handleChange}
                     mode="dialog"
                 >

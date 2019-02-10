@@ -7,7 +7,7 @@ export default class ControlSelect extends React.Component {
     render() {
         const {
             options,
-            value,
+            selectedValue,
             defaultValue,
             onChange,
             error,
@@ -20,7 +20,7 @@ export default class ControlSelect extends React.Component {
                     name={name}
                     defaultValue={defaultValue}
                     options={options} 
-                    selectedValue={value || defaultValue}
+                    selectedValue={selectedValue || defaultValue}
                     onChange={onChange}
                     error={error}
                 />
@@ -31,7 +31,7 @@ export default class ControlSelect extends React.Component {
                     name={name}
                     defaultValue={defaultValue}
                     options={options} 
-                    value={value}
+                    selectedValue={selectedValue}
                     onChange={onChange}
                     error={error}
                 />
