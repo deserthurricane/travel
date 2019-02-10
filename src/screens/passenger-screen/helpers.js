@@ -24,7 +24,7 @@ const validationRules = {
         regex_js: "(0[1-9]|1[012])"
     },
     birth_year: {
-        message: "Введите число",
+        message: "Введите правильный год рождения",
         min_length: 4,
         max_length: 4,
         regex_js: "^(19|20)\\d{2}$"
@@ -80,7 +80,7 @@ const validationRules = {
         regex_js: "(0[1-9]|1[012])"
     },
     international_passport_expiration_year: {
-        message: "Введите число",
+        message: "Введите правильное значение 20XX",
         min_length: 4,
         max_length: 4,
         regex_js: "^(20)\\d{2}$"

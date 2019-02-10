@@ -59,6 +59,7 @@ export default class DateFormGroup extends React.Component {
                 <ControlInput
                     name={dayName}
                     label="День"
+                    keyboardType="numeric"
                     onChange={handleInputChange}
                     value={values[dayName]}
                     error={fieldValidity[dayName]}
@@ -66,6 +67,7 @@ export default class DateFormGroup extends React.Component {
                 <ControlInput
                     name={monthName}
                     label="Месяц"
+                    keyboardType="numeric"
                     onChange={handleInputChange}
                     value={values[monthName]}
                     error={fieldValidity[monthName]}
@@ -73,6 +75,7 @@ export default class DateFormGroup extends React.Component {
                 <ControlInput
                     name={yearName}
                     label="Год"
+                    keyboardType="numeric"
                     onChange={handleInputChange}
                     value={values[yearName]}
                     error={fieldValidity[yearName]}

@@ -15,6 +15,7 @@ export default function DocumentFormGroup(props) {
                         name="international_passport_series"
                         label="Серия загранпаспорта"
                         keyboardType="numeric"
+                        mask="99"
                         maxLength={validationRules.international_passport_series.max_length}
                         onChange={handleInputChange}
                         value={values.international_passport_series}
@@ -24,6 +25,7 @@ export default function DocumentFormGroup(props) {
                         name="international_passport_number"
                         label="Номер загранпаспорта"
                         keyboardType="numeric"
+                        mask="9999999"
                         maxLength={validationRules.international_passport_number.max_length}
                         onChange={handleInputChange}
                         value={values.international_passport_number}
@@ -47,6 +49,7 @@ export default function DocumentFormGroup(props) {
                     <ControlInput
                         name="birth_certificate_series"
                         label="Серия свидетельства о рождении"
+                        mask="XV-АБ"
                         maxLength={validationRules.birth_certificate_series.max_length}
                         onChange={handleInputChange}
                         value={values.birth_certificate_series}
@@ -56,6 +59,7 @@ export default function DocumentFormGroup(props) {
                         name="birth_certificate_number"
                         label="Номер свидетельства о рождении"
                         keyboardType="numeric"
+                        mask="999999"
                         maxLength={validationRules.birth_certificate_number.max_length}
                         onChange={handleInputChange}
                         value={values.birth_certificate_number}
@@ -71,6 +75,7 @@ export default function DocumentFormGroup(props) {
                         name="civil_passport_series"
                         label="Серия паспорта"
                         keyboardType="numeric"
+                        mask="9999"
                         maxLength={validationRules.civil_passport_series.max_length}
                         onChange={handleInputChange}
                         value={values.civil_passport_series}
@@ -79,6 +84,7 @@ export default function DocumentFormGroup(props) {
                     <ControlInput
                         name="civil_passport_number"
                         label="Номер паспорта"
+                        mask="999999"
                         keyboardType="numeric"
                         maxLength={validationRules.civil_passport_number.max_length}
                         onChange={handleInputChange}

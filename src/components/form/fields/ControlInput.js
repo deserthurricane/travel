@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from './Input';
-// import MaskedInput from 'components/fields/masked-field/index';
+import MaskedInput from './MaskedInput';
 
 export class ControlInput extends React.Component {
     constructor(props) {
@@ -66,18 +66,20 @@ export class ControlInput extends React.Component {
                 />
             );
         } else {
-            return null;
-            // (
-            //     <MaskedInput 
-            //         {...inputProps}
-            //         mask={mask}
-            //         value={value || ''}
-            //         onChange={this.handleChange}
-            //         onBlur={this.handleBlur}
-            //         touched={touched}
-            //         error={error}
-            //     />
-            // );
+            return (
+                <MaskedInput 
+                    {...inputProps}
+                    type="custom"
+                    options={{
+                        mask
+                    }}
+                    value={value || ''}
+                    onChange={this.handleChange}
+                    onBlur={this.handleBlur}
+                    touched={touched}
+                    error={error}
+                />
+            );
         }
     }
 }
