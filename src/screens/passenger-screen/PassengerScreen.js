@@ -1,5 +1,4 @@
 import React from 'react';
-// import { connect } from 'redux';
 import {
   ScrollView,
   View,
@@ -12,9 +11,41 @@ export default class PassengerScreen extends React.Component {
 		header: null,
 	};
 
+	state = {
+		screen: Dimensions.get('window')
+	};
+
+	getOrientation() {
+		if (this.state.screen.width > this.state.screen.height) {
+			return 'LANDSCAPE';
+		} else {
+			return 'PORTRAIT';
+		}
+	}
+
+	getStyle() {
+		if (this.getOrientation() === 'LANDSCAPE') {
+			return landscapeStyles;
+		} else {
+			return portraitStyles;
+		}
+	}
+
+	onLayout = () => {
+		this.setState({ screen: Dimensions.get('window') });
+	}
+
 	render() {
+		const layoutStyle = this.getStyle();
+		const mergedStyles = {
+			...styles,
+			...layoutStyle
+		};
 		return (
-			<View style={styles.container}>
+			<View 
+				style={mergedStyles.container} 
+				onLayout={this.onLayout}
+			>
 				<ScrollView 
 					style={styles.container} 
 					contentContainerStyle={styles.contentContainer}
