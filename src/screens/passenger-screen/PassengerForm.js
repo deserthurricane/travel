@@ -16,6 +16,7 @@ import {
 } from './helpers';
 import { countriesSelector, fetchCountriesThunkActionCreator } from '../../ducks/countries';
 import { passengerDataSelector, updatePassengerDataActionCreator } from '../../ducks/passenger';
+import KeyboardShift from '../../components/KeyboardShift';
 
 const mapStateToProps = (state) => ({
 	countries: countriesSelector(state),
@@ -42,73 +43,77 @@ class PassengerForm extends React.Component {
 
 		if (countries && countries.length) {
 			return (
-				<ControlForm
-					initialValues={initialValues}
-					rules={validationRules}
-					onSubmit={this.handleSubmit}
-					submitComponent="modal"
-					render={({
-						values = initialValues,
-						handleInputChange,
-						fieldValidity,
-						formValidity
-					}) => (
-							<View>
-								<ControlInput
-									name="surname"
-									label="Фамилия"
-									onChange={handleInputChange}
-									value={values.surname}
-									error={fieldValidity.surname}
-								/>
-								<ControlInput
-									name="name"
-									label="Имя"
-									onChange={handleInputChange}
-									value={values.name}
-									error={fieldValidity.name}
-								/>
-								<Text>Дата рождения</Text>
-								<DateFormGroup
-									dayName="birth_day" 
-									monthName="birth_month" 
-									yearName="birth_year" 
-									values={values} 
-									fieldValidity={fieldValidity} 
-									handleInputChange={handleInputChange} 
-									compareDateFn={isDateSmallerOrEqual}
-								/>
-								<ControlRadioGroup
-									groupLabel="Пол"
-									name="sex"
-									options={sexOptions}
-									selectedValue={values.sex}
-									onChange={handleInputChange}
-									error={fieldValidity.sex}
-								/>
-								<Text>Гражданство</Text>
-								<ControlSelect
-									name="citizenship"
-									options={countries} 
-									selectedValue={values.citizenship}
-									onChange={handleInputChange}
-								/>
-								<Text>Тип документа</Text>
-								<ControlSelect
-									name="document_type"
-									options={documentTypeOptions} 
-									selectedValue={values.document_type}
-									onChange={handleInputChange}
-									error={fieldValidity.document_type}
-								/>
-								<DocumentFormGroup
-									values={values}
-									handleInputChange={handleInputChange}
-									fieldValidity={fieldValidity}
-								/>
-							</View>
-						)}
-				/>
+				<KeyboardShift>
+					{() => (
+						<ControlForm
+						initialValues={initialValues}
+						rules={validationRules}
+						onSubmit={this.handleSubmit}
+						submitComponent="modal"
+						render={({
+							values = initialValues,
+							handleInputChange,
+							fieldValidity,
+							formValidity
+						}) => (
+								<View>
+									<ControlInput
+										name="surname"
+										label="Фамилия"
+										onChange={handleInputChange}
+										value={values.surname}
+										error={fieldValidity.surname}
+									/>
+									<ControlInput
+										name="name"
+										label="Имя"
+										onChange={handleInputChange}
+										value={values.name}
+										error={fieldValidity.name}
+									/>
+									<Text>Дата рождения</Text>
+									<DateFormGroup
+										dayName="birth_day" 
+										monthName="birth_month" 
+										yearName="birth_year" 
+										values={values} 
+										fieldValidity={fieldValidity} 
+										handleInputChange={handleInputChange} 
+										compareDateFn={isDateSmallerOrEqual}
+									/>
+									<ControlRadioGroup
+										groupLabel="Пол"
+										name="sex"
+										options={sexOptions}
+										selectedValue={values.sex}
+										onChange={handleInputChange}
+										error={fieldValidity.sex}
+									/>
+									<Text>Гражданство</Text>
+									<ControlSelect
+										name="citizenship"
+										options={countries} 
+										selectedValue={values.citizenship}
+										onChange={handleInputChange}
+									/>
+									<Text>Тип документа</Text>
+									<ControlSelect
+										name="document_type"
+										options={documentTypeOptions} 
+										selectedValue={values.document_type}
+										onChange={handleInputChange}
+										error={fieldValidity.document_type}
+									/>
+									<DocumentFormGroup
+										values={values}
+										handleInputChange={handleInputChange}
+										fieldValidity={fieldValidity}
+									/>
+								</View>
+							)}
+					/>
+					)}
+				</KeyboardShift>
 			);
 		} else {
 			return null;
