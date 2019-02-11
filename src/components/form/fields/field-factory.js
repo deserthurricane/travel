@@ -35,12 +35,14 @@ function fieldFactory(Input) {
         setStyles = () => {
             const { error, value } = this.props;
             const { focused } = this.state; 
-            if (error) {
+            const isInvalid = this.isInvalid();
+            
+            if (isInvalid) {
                 return {
                     ...styles.input,
                     ...styles.invalid,
                 };
-            } else if (!error && value) {
+            } else if (!error && touched && value) {
                 return {
                     ...styles.input,
                     ...styles.valid,
@@ -128,7 +130,7 @@ function fieldFactory(Input) {
                         onBlur={this.handleBlur}
                         onChangeText={this.handleChange}
                     />
-                    <Hint>{error}</Hint>
+                    {isInvalid && <Hint>{error}</Hint>}
                 </View>
             );
         }

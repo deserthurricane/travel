@@ -41,6 +41,7 @@ export default class PassengerScreen extends React.Component {
 			...styles,
 			...layoutStyle
 		};
+
 		return (
 			<View 
 				style={mergedStyles.container} 
@@ -51,7 +52,7 @@ export default class PassengerScreen extends React.Component {
 					contentContainerStyle={styles.contentContainer}
 				>
 					<Heading>Данные пассажиров</Heading>
-					<PassengerForm/>
+					<PassengerForm />
 				</ScrollView>
 			</View>
 		);

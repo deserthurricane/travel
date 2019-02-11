@@ -56,30 +56,36 @@ export default class DateFormGroup extends React.Component {
         const { dateError } = this.state;
         return (
             <React.Fragment>
-                <ControlInput
-                    name={dayName}
-                    label="День"
-                    keyboardType="numeric"
-                    onChange={handleInputChange}
-                    value={values[dayName]}
-                    error={fieldValidity[dayName]}
-                />
-                <ControlInput
-                    name={monthName}
-                    label="Месяц"
-                    keyboardType="numeric"
-                    onChange={handleInputChange}
-                    value={values[monthName]}
-                    error={fieldValidity[monthName]}
-                />
-                <ControlInput
-                    name={yearName}
-                    label="Год"
-                    keyboardType="numeric"
-                    onChange={handleInputChange}
-                    value={values[yearName]}
-                    error={fieldValidity[yearName]}
-                />
+                <View style={{flex: 1}}>
+                    <ControlInput
+                        name={dayName}
+                        label="День"
+                        keyboardType="numeric"
+                        onChange={handleInputChange}
+                        value={values[dayName]}
+                        error={fieldValidity[dayName]}
+                    />
+                </View>
+                <View style={{flex: 1}}>
+                    <ControlInput
+                        name={monthName}
+                        label="Месяц"
+                        keyboardType="numeric"
+                        onChange={handleInputChange}
+                        value={values[monthName]}
+                        error={fieldValidity[monthName]}
+                    />
+                </View>
+                <View style={{flex: 1}}>
+                    <ControlInput
+                        name={yearName}
+                        label="Год"
+                        keyboardType="numeric"
+                        onChange={handleInputChange}
+                        value={values[yearName]}
+                        error={fieldValidity[yearName]}
+                    />
+                </View>
                 <Text style={{color: 'red'}}>{dateError}</Text>
             </React.Fragment>
         );
