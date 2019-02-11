@@ -1,6 +1,8 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
+import Label from '../../components/form/fields/components/Label';
 import ControlInput from '../../components/form/fields/ControlInput';
+import styles from './styles';
 
 const currentDate = Date.now();
 
@@ -46,6 +48,7 @@ export default class DateFormGroup extends React.Component {
 
     render() {
         const { 
+            label,
             dayName, 
             monthName, 
             yearName, 
@@ -56,35 +59,35 @@ export default class DateFormGroup extends React.Component {
         const { dateError } = this.state;
         return (
             <React.Fragment>
-                <View style={{flex: 1}}>
-                    <ControlInput
-                        name={dayName}
-                        label="День"
-                        keyboardType="numeric"
-                        onChange={handleInputChange}
-                        value={values[dayName]}
-                        error={fieldValidity[dayName]}
-                    />
-                </View>
-                <View style={{flex: 1}}>
-                    <ControlInput
-                        name={monthName}
-                        label="Месяц"
-                        keyboardType="numeric"
-                        onChange={handleInputChange}
-                        value={values[monthName]}
-                        error={fieldValidity[monthName]}
-                    />
-                </View>
-                <View style={{flex: 1}}>
-                    <ControlInput
-                        name={yearName}
-                        label="Год"
-                        keyboardType="numeric"
-                        onChange={handleInputChange}
-                        value={values[yearName]}
-                        error={fieldValidity[yearName]}
-                    />
+                <Label>{label}</Label>
+                <View style={styles.formRow}>
+                    <View style={styles.dateField}>
+                        <ControlInput
+                            name={dayName}
+                            keyboardType="numeric"
+                            onChange={handleInputChange}
+                            value={values[dayName]}
+                            error={fieldValidity[dayName]}
+                        />
+                    </View>
+                    <View style={styles.dateField}>
+                        <ControlInput
+                            name={monthName}
+                            keyboardType="numeric"
+                            onChange={handleInputChange}
+                            value={values[monthName]}
+                            error={fieldValidity[monthName]}
+                        />
+                    </View>
+                    <View style={styles.dateField}>
+                        <ControlInput
+                            name={yearName}
+                            keyboardType="numeric"
+                            onChange={handleInputChange}
+                            value={values[yearName]}
+                            error={fieldValidity[yearName]}
+                        />
+                    </View>
                 </View>
                 <Text style={{color: 'red'}}>{dateError}</Text>
             </React.Fragment>

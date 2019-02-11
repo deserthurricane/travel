@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import Label from './components/Label';
 import Hint from './components/Hint';
 import styles from '../styles';
@@ -18,22 +18,8 @@ function fieldFactory(Input) {
             };
         }
 
-        // componentDidUpdate() {
-
-        //     // await this.applyNewActiveState();
-        // }
-        
-        // applyNewActiveState = () => {
-        //     const { focused } = this.state;
-        //     const newActiveState = focused /* || !this.isInputValueEmpty() */;
-
-        //     if (active !== newActiveState) {
-        //         this.setState({ active: newActiveState });
-        //     }
-        // };
-
         setStyles = () => {
-            const { error, value } = this.props;
+            const { error, value, touched } = this.props;
             const { focused } = this.state; 
             const isInvalid = this.isInvalid();
             
@@ -68,21 +54,15 @@ function fieldFactory(Input) {
         
         handleFocus = () => {
             this.setState({ focused: true });
-            
-            // const { onFocus } = this.props;
-            // if (onFocus) {
-            //     onFocus(e, ...args);
-            // }
         };
 
-        handleBlur = (e, ...args) => {
-            // const active = !!this.props.value;
+        handleBlur = (value) => {
             this.setState({ focused: false });
             
-            // const { onBlur } = this.props;
-            // if (onBlur) {
-            //     onBlur(e, ...args);
-            // }
+            const { onBlur } = this.props;
+            if (onBlur) {
+                onBlur(value);
+            }
         };
         
         render() {   
@@ -91,46 +71,28 @@ function fieldFactory(Input) {
                 label,
                 touched,
                 error,
-                required,
-                disabled,
-                isLoading,
                 defaultValue,
-                inputRef,
-                classic,
                 handleChange,
                 ...inputProps
             } = this.props;
-
-            const isInvalid = this.isInvalid();
-            // const classes = process(
-            //     className,
-            //     fieldClassNames.TextField,
-            //     {
-            //         [fieldClassNames.TextFieldInvalid]: isInvalid,
-            //         [fieldClassNames.TextFieldDisabled]: disabled,
-            //     },
-            // );
-
             const inputStyles = this.setStyles();
+            const isInvalid = this.isInvalid();
 
             return (
-                <View>
-                    <Label required={required}>
+                <View style={styles.inputWrapper}>
+                    {label && <Label>
                         {label}
-                    </Label>
+                    </Label>}
                     <Input
                         {...inputProps}
                         style={inputStyles}
-                        ref={inputRef}
                         value={value}
                         defaultValue={defaultValue}
-                        required={required}
-                        disabled={disabled}
                         onFocus={this.handleFocus}
                         onBlur={this.handleBlur}
                         onChangeText={this.handleChange}
                     />
-                    {isInvalid && <Hint>{error}</Hint>}
+                    <Hint>{isInvalid ? error : ' '}</Hint>
                 </View>
             );
         }

@@ -16,6 +16,25 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#fff',
 	},
+	formRow: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'flex-start'
+	},
+	dateField: {
+		flex: 1,
+		paddingHorizontal: 5,
+		paddingVertical: 0
+	},
+	seriesField: {
+		flex: 1,
+		paddingRight: 10
+	},
+	numberField: {
+		flex: 2,
+		paddingLeft: 10
+	},
 	developmentModeText: {
 		marginBottom: 20,
 		color: 'rgba(0,0,0,0.4)',
@@ -25,6 +44,7 @@ const styles = StyleSheet.create({
 	},
 	contentContainer: {
 		paddingTop: 30,
+		padding: 7,
 	},
 	welcomeContainer: {
 		alignItems: 'center',

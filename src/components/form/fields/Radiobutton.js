@@ -1,7 +1,6 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import styles from '../styles';
-import Label from './components/Label';
 
 export default class Radiobutton extends React.Component {
     onPress = () => {
@@ -10,21 +9,29 @@ export default class Radiobutton extends React.Component {
     }
 
     render() {
-        const { label, selected } = this.props;
+        const { label, selected, hideLeftBorder } = this.props;
 
-        const radioStyles = selected 
+        let radioStyles = selected 
             ? {
                 ...styles.radio,
                 ...styles.selected
             }
-            : styles.radio; 
+            : styles.radio;
+
+        if (hideLeftBorder) {
+            radioStyles = Object.assign({}, styles.radioRight, radioStyles);
+        } 
 
         return (
             <TouchableOpacity
                 style={radioStyles}
                 onPress={this.onPress}
             >
-                <Label> {label} </Label>
+                <Text style={{
+                    color: selected ? '#fff' : '#000'
+                }}> 
+                    {label} 
+                </Text>
             </TouchableOpacity>
         );
     }

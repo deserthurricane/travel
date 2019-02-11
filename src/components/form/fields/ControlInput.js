@@ -32,10 +32,10 @@ export class ControlInput extends React.Component {
         }
     }
 
-    handleBlur = async (e) => {
+    handleBlur = async (value) => {
         /** Показ тултипов, задается в родительском компоненте */
         if (this.props.hasOwnProperty('onBlur')) {
-            this.props.onBlur(e);
+            this.props.onBlur(value);
         }
         /**
          * Срабатывает только при первом onblur, для 

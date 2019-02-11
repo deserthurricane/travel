@@ -1,7 +1,8 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 import SelectAndroid from './SelectAndroid'; 
 import SelectIOS from './SelectIOS';
+import Label from './components/Label';
 
 export default class ControlSelect extends React.Component {
     render() {
@@ -11,30 +12,41 @@ export default class ControlSelect extends React.Component {
             defaultValue,
             onChange,
             error,
-            name
+            name,
+            label
         } = this.props;
 
         if (Platform.OS === 'ios') {
             return (
-                <SelectIOS 
-                    name={name}
-                    defaultValue={defaultValue}
-                    options={options} 
-                    selectedValue={selectedValue || defaultValue}
-                    onChange={onChange}
-                    error={error}
-                />
+                <View>
+                    <Label>
+                        {label}
+                    </Label>
+                    <SelectIOS 
+                        name={name}
+                        defaultValue={defaultValue}
+                        options={options} 
+                        selectedValue={selectedValue || defaultValue}
+                        onChange={onChange}
+                        error={error}
+                    />
+                </View>
             )
         } else {
             return (
-                <SelectAndroid
-                    name={name}
-                    defaultValue={defaultValue}
-                    options={options} 
-                    selectedValue={selectedValue}
-                    onChange={onChange}
-                    error={error}
-                />
+                <View>
+                    <Label>
+                        {label}
+                    </Label>
+                    <SelectAndroid
+                        name={name}
+                        defaultValue={defaultValue}
+                        options={options} 
+                        selectedValue={selectedValue}
+                        onChange={onChange}
+                        error={error}
+                    />
+                </View>
             );
         }
     }

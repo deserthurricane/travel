@@ -55,6 +55,7 @@ class ControlRadioGroup extends React.Component {
                     selected={selectedValue === option.value}
                     disabled={disabled}
                     onPress={this.handleChange}
+                    hideLeftBorder={index > 0}
                 />
             );
         });

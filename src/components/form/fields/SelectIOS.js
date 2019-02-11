@@ -45,7 +45,7 @@ export default class SelectIOS extends React.Component {
   render() {
     const { selectedValue } = this.props;
     return (
-      <View style={{marginTop: 20}}>
+      <View>
         <Modal
           animationType="slide"
           transparent={false}
@@ -55,7 +55,7 @@ export default class SelectIOS extends React.Component {
           }}
         >
           <View style={{marginTop: 22}}>
-            <View /* style={{height: 500} }*/>
+            <View>
               <TouchableHighlight
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);

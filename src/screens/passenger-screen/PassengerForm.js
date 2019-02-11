@@ -17,6 +17,7 @@ import {
 import { countriesSelector, fetchCountriesThunkActionCreator } from '../../ducks/countries';
 import { passengerDataSelector, updatePassengerDataActionCreator } from '../../ducks/passenger';
 import KeyboardShift from '../../components/KeyboardShift';
+import styles from './styles';
 
 const mapStateToProps = (state) => ({
 	countries: countriesSelector(state),
@@ -46,15 +47,14 @@ class PassengerForm extends React.Component {
 				<KeyboardShift>
 					{() => (
 						<ControlForm
-						initialValues={initialValues}
-						rules={validationRules}
-						onSubmit={this.handleSubmit}
-						submitComponent="modal"
-						render={({
-							values = initialValues,
-							handleInputChange,
-							fieldValidity,
-							formValidity
+							initialValues={initialValues}
+							rules={validationRules}
+							onSubmit={this.handleSubmit}
+							submitComponent="modal"
+							render={({
+								values = initialValues,
+								handleInputChange,
+								fieldValidity
 						}) => (
 								<View>
 									<ControlInput
@@ -71,8 +71,8 @@ class PassengerForm extends React.Component {
 										value={values.name}
 										error={fieldValidity.name}
 									/>
-									<Text>Дата рождения</Text>
 									<DateFormGroup
+										label="Дата рождения"
 										dayName="birth_day" 
 										monthName="birth_month" 
 										yearName="birth_year" 
@@ -89,16 +89,16 @@ class PassengerForm extends React.Component {
 										onChange={handleInputChange}
 										error={fieldValidity.sex}
 									/>
-									<Text>Гражданство</Text>
 									<ControlSelect
 										name="citizenship"
+										label="Гражданство"
 										options={countries} 
 										selectedValue={values.citizenship}
 										onChange={handleInputChange}
 									/>
-									<Text>Тип документа</Text>
 									<ControlSelect
 										name="document_type"
+										label="Тип документа"
 										options={documentTypeOptions} 
 										selectedValue={values.document_type}
 										onChange={handleInputChange}

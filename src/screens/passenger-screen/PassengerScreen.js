@@ -2,8 +2,9 @@ import React from 'react';
 import {
   ScrollView,
   View,
+  Dimensions
 } from 'react-native';
-import styles from './styles';
+import styles, {portraitStyles, landscapeStyles} from './styles';
 import Heading from '../../components/heading/Heading';
 import PassengerForm from './PassengerForm';
 export default class PassengerScreen extends React.Component {
@@ -43,16 +44,13 @@ export default class PassengerScreen extends React.Component {
 		};
 
 		return (
-			<View 
-				style={mergedStyles.container} 
-				onLayout={this.onLayout}
-			>
+			<View style={styles.container}>
 				<ScrollView 
 					style={styles.container} 
 					contentContainerStyle={styles.contentContainer}
 				>
 					<Heading>Данные пассажиров</Heading>
-					<PassengerForm />
+					<PassengerForm/>
 				</ScrollView>
 			</View>
 		);

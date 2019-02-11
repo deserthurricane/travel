@@ -1,10 +1,20 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    formContainer: {
+		paddingVertical: 20,
+		paddingHorizontal: 10,
+		backgroundColor: '#f0f0f0',
+        borderRadius: 6
+	},
+    inputWrapper: {
+        marginBottom: 10
+    },
     input: {
-        height: 50,
+        height: 40,
         paddingVertical: 10, 
         paddingHorizontal: 10, 
+        backgroundColor: '#fff',
         borderColor: 'skyblue',
         borderWidth: 1,
         borderRadius: 4,
@@ -19,26 +29,34 @@ const styles = StyleSheet.create({
     valid: {
         borderColor: 'green',
     },
+    label: {
+        marginBottom: 5
+    },
     hint: {
         color: 'red'
     },
     radio: {
         flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 10, 
-        paddingHorizontal: 10,
-        height: 50,
+        height: 40,
+        backgroundColor: '#fff',
         borderColor: 'skyblue',
-        borderWidth: 1,
+        borderWidth: 1
+    },
+    radioRight: {
+        borderLeftWidth: 0,
+        color: '#fff'
     },
     selected: {
-        backgroundColor: 'silver',
-        color: 'white',
+        color: '#ffffff',
+        backgroundColor: 'steelblue'
     },
     radioGroup: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
+        marginBottom: 20
     },
     radioList: {
         flex: 1,
@@ -46,15 +64,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     selectIOS: {
-        height: 50,
+        height: 40,
         paddingVertical: 10, 
-        paddingHorizontal: 10, 
+        paddingHorizontal: 10,
+        marginBottom: 20,
+        backgroundColor: '#fff', 
         borderColor: 'skyblue',
         borderWidth: 1,
         borderRadius: 4,
     },
     selectAndroid: {
         borderColor: 'skyblue',
+        backgroundColor: '#fff',
         borderWidth: 1,
         borderRadius: 4,
     }
