@@ -89,7 +89,7 @@ export default class DateFormGroup extends React.Component {
                         />
                     </View>
                 </View>
-                <Text style={{color: 'red'}}>{dateError}</Text>
+                <Text style={{color: 'red', marginBottom: 20}}>{dateError}</Text>
             </React.Fragment>
         );
     }

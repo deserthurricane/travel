@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Picker } from 'react-native';
-import fieldFactory from './field-factory';
+import fieldFactory from './FieldFactory';
 import styles from '../styles';
 
 class SelectAndroid extends React.Component {

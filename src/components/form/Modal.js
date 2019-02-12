@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, View, ScrollView, StyleSheet } from 'react-native';
-import commonStyles from '../form/styles';
+import commonStyles from './styles';
 
 export default class ControlModal extends Component {
 

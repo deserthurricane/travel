@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableHighlight, View, ScrollView, Alert } from 'react-native';
-import ControlModal from '../../../components/modal/Modal';
+import ControlModal from '../Modal';
 import Radiobutton from './Radiobutton';
 import styles from '../styles';
 

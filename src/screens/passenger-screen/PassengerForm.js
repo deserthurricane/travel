@@ -5,7 +5,7 @@ import ControlForm from '../../components/form/ControlForm';
 import ControlInput from '../../components/form/fields/ControlInput';
 import ControlRadioGroup from '../../components/form/fields/ControlRadioGroup';
 import ControlSelect from '../../components/form/fields/ControlSelect';
-import ControlModal from '../../components/modal/Modal';
+import ControlModal from '../../components/form/Modal';
 import DocumentFormGroup from './DocumentFormGroup';
 import DateFormGroup from './DateFormGroup';
 import { 
