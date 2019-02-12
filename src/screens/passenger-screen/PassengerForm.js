@@ -63,6 +63,7 @@ class PassengerForm extends React.Component {
 										onChange={handleInputChange}
 										value={values.surname}
 										error={fieldValidity.surname}
+										capitalize={true}
 									/>
 									<ControlInput
 										name="name"
@@ -70,6 +71,7 @@ class PassengerForm extends React.Component {
 										onChange={handleInputChange}
 										value={values.name}
 										error={fieldValidity.name}
+										capitalize={true}
 									/>
 									<DateFormGroup
 										label="Дата рождения"
