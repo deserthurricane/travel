@@ -50,7 +50,7 @@ function fieldFactory(Input) {
 
         handleChange = (value) => {
             const { onChange } = this.props;
-            onChange(value);
+            onChange(value.trim());
         }
         
         handleFocus = () => {

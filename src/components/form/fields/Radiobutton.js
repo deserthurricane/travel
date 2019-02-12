@@ -9,7 +9,7 @@ export default class Radiobutton extends React.Component {
     }
 
     render() {
-        const { label, selected, hideLeftBorder } = this.props;
+        const { label, selected, hideLeftBorder, hideBottomBorder } = this.props;
 
         let radioStyles = selected 
             ? {
@@ -17,7 +17,9 @@ export default class Radiobutton extends React.Component {
                 ...styles.selected
             }
             : styles.radio;
-
+        if (hideBottomBorder) {
+            radioStyles = Object.assign({}, styles.radioListItem, radioStyles);
+        }
         if (hideLeftBorder) {
             radioStyles = Object.assign({}, styles.radioRight, radioStyles);
         } 

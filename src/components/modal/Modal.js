@@ -1,63 +1,82 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, View, Platform } from 'react-native';
-import { Icon } from 'expo';
+import { Modal, Text, TouchableHighlight, View, ScrollView, StyleSheet } from 'react-native';
+import commonStyles from '../form/styles';
 
 export default class ControlModal extends Component {
-	state = {
-		modalVisible: false,
-	};
-
-	setModalVisible(visible) {
-		this.setState({ modalVisible: visible });
-	}
-
-	handlePress = () => {
-		if (this.props.onPress) {
-			this.props.onPress();
-		}
-		this.setModalVisible(true);
-	}
 
 	render() {
-		const { data, openText } = this.props;
+		const { title, data, modalVisible, onPress, children } = this.props;
 		return (
 			<View style={{ marginTop: 22 }}>
 				<Modal
 					animationType="slide"
 					transparent={false}
-					visible={this.state.modalVisible}
+					supportedOrientations={[
+						'portrait', 
+						'portrait-upside-down', 
+						'landscape', 
+						'landscape-left', 
+						'landscape-right'
+					]}
+					visible={modalVisible}
 					onRequestClose={() => {
 						// do nothing
 					}}
 				>
 					<View style={{ marginTop: 22 }}>
-						<View>
+						<View style={styles.header}>
+							<Text style={styles.title}>{title}</Text>
 							<TouchableHighlight
-								onPress={() => {
-									this.setModalVisible(!this.state.modalVisible);
-								}}
+								onPress={onPress}
 							>
-								<Icon.Ionicons
-									name={Platform.OS === 'ios'
-										? 'ios-close'
-										: 'md-close'
-									}
-									size={26}
-									style={{ marginBottom: 20 }}
-									color={'skyblue'}
-								/>
+								<Text style={styles.close}>Закрыть</Text>
 							</TouchableHighlight>
+						</View>
+						<View style={styles.wrapper}>
 							<Text>{data}</Text>
 						</View>
+						
+					</View>
+					<View style={styles.radioList}>
+						<ScrollView 
+							style={commonStyles.container} 
+							contentContainerStyle={commonStyles.contentContainer}
+						>
+							{children}
+						</ScrollView>
 					</View>
 				</Modal>
-
-				<TouchableHighlight
-					onPress={this.handlePress}
-				>
-					<Text>{openText}</Text>
-				</TouchableHighlight>
 			</View>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	wrapper: {
+		padding: 10
+	},
+	header: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		borderBottomWidth: 1,
+		borderBottomColor: '#999999',
+		backgroundColor: '#f0f0f0',
+		paddingVertical: 20,
+		paddingHorizontal: 10
+	},
+	title: {
+		fontSize: 18,
+		textAlign: 'center',
+		fontWeight: 'bold'
+	},
+	close: {
+		alignSelf: 'flex-end',
+		fontSize: 18,
+		fontWeight: 'bold',
+		color: 'steelblue',
+		textAlign: 'right'
+	},
+	radioList: {
+		marginTop: -34
+	}
+});

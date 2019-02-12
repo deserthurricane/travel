@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         height: 40,
         backgroundColor: '#fff',
         borderColor: 'skyblue',
-        borderWidth: 1
+        borderWidth: 1,
     },
     radioRight: {
         borderLeftWidth: 0,
@@ -62,6 +62,11 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
+        borderBottomColor: 'skyblue',
+        borderBottomWidth: 1
+    },
+    radioListItem: {
+        borderBottomWidth: 0
     },
     selectIOS: {
         height: 40,
@@ -78,6 +83,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderWidth: 1,
         borderRadius: 4,
+    },
+    submitButton: {
+        borderRadius: 4,
+        backgroundColor: 'green',
+        padding: 15,
+    },
+    submitLabel: {
+        textAlign: 'center',
+        color: '#fff'
     }
 });
 
