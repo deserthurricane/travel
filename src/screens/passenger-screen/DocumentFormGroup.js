@@ -58,7 +58,15 @@ export default function DocumentFormGroup(props) {
                             <ControlInput
                                 name="birth_certificate_series"
                                 label="Серия"
-                                mask="XV-АБ"
+                                mask="AA-АA"
+                                translation={{
+                                    '-': function(val) {
+                                        if (val === '-') {
+                                            return val;
+                                        }
+                                        return null
+                                    }
+                                }}
                                 maxLength={validationRules.birth_certificate_series.max_length}
                                 onChange={handleInputChange}
                                 value={values.birth_certificate_series}

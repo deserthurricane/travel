@@ -52,7 +52,7 @@ export class ControlInput extends React.Component {
 
     render() {
         const { touched } = this.state;
-        const { value, error, mask, ...inputProps } = this.props;
+        const { value, error, mask, translation, ...inputProps } = this.props;
 
         if (!mask) {
             return (
@@ -71,7 +71,8 @@ export class ControlInput extends React.Component {
                     {...inputProps}
                     type="custom"
                     options={{
-                        mask
+                        mask,
+                        translation
                     }}
                     value={value || ''}
                     onChange={this.handleChange}
