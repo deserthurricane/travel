@@ -86,9 +86,9 @@ const validationRules = {
         regex_js: "^(20)\\d{2}$"
     },
     birth_certificate_series: {
-        regex_js: '^(([XVI]){1,2}([А-Я]){1,2})$',
+        regex_js: '^(([XVI]){1,2}-([А-Я]){1,2})$',
         min_length: 2,
-        max_length: 4,
+        max_length: 5,
         message: 'Неверно указана серия свидетельства о рождении'
     },
     birth_certificate_number: {

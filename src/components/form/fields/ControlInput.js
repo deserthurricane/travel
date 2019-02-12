@@ -71,8 +71,7 @@ export class ControlInput extends React.Component {
                     {...inputProps}
                     type="custom"
                     options={{
-                        mask,
-                        translation
+                        mask
                     }}
                     value={value || ''}
                     onChange={this.handleChange}

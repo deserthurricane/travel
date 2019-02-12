@@ -49,8 +49,8 @@ function fieldFactory(Input) {
         };
 
         handleChange = (value) => {
-            const { onChange, capitalize } = this.props;
-            onChange(capitalize ? value.toUpperCase() : value);
+            const { onChange } = this.props;
+            onChange(value);
         }
         
         handleFocus = () => {
