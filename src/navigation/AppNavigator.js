@@ -3,6 +3,7 @@ import { createAppContainer, createDrawerNavigator, createBottomTabNavigator } f
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import MainTabNavigator from './MainTabNavigator';
+import RwayNavigator from './RwayNavigator';
 import { isIOS } from '../utils/is';
 
 /** Навигация с табами для iOS и боковым меню для Android */
@@ -23,7 +24,7 @@ export default createAppContainer(createMainNavigator({
     }
   },
   Trains: {
-    screen: MainTabNavigator,
+    screen: RwayNavigator,
     navigationOptions: {
         title: 'Поезда',
         [isIOS ? 'tabBarIcon' : 'drawerIcon']: ({ tintColor }) => (

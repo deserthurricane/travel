@@ -1,8 +1,8 @@
 import React from 'react';
 import { SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
-import AppNavigator from './navigation/AppNavigator';
+import AppNavigator from './src/navigation/AppNavigator';
 
-export default class AppWrapper extends React.Component {
+export default class App extends React.Component {
 	render() {
 		return (
 			<SafeAreaView style={{ flex: 1 }}>

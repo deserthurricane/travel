@@ -15,8 +15,8 @@ import {
 	documentTypeOptions,
 	isDateSmallerOrEqual
 } from './helpers';
-import { countriesSelector, fetchCountriesThunkActionCreator } from '../../ducks/countries';
-import { passengerDataSelector, updatePassengerDataActionCreator } from '../../ducks/passenger';
+import { countriesSelector, fetchCountriesThunkActionCreator } from '../../store/countries';
+import { passengerDataSelector, updatePassengerDataActionCreator } from '../../store/passenger';
 import styles from './styles';
 
 const mapStateToProps = (state) => ({
