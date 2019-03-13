@@ -1,12 +1,18 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import store from './ducks/index';
-import AppWrapper from './AppWrapper';
+import { SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
+import AppNavigator from './navigation/AppNavigator';
 
-export default function App() {
-    return (
-        <Provider store={store}>
-            <AppWrapper />
-        </Provider>
-    );
+export default class AppWrapper extends React.Component {
+	render() {
+		return (
+			<SafeAreaView style={{ flex: 1 }}>
+				<KeyboardAvoidingView 
+					style={{ flex: 1 }} 
+					behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+				>
+					<AppNavigator/>
+				</KeyboardAvoidingView>
+			</SafeAreaView>
+		);
+	}
 }
